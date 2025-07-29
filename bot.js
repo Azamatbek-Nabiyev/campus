@@ -1,5 +1,5 @@
 const { Telegraf } = require('telegraf');
-const { BOT_TOKEN, ADMIN_ID } = require('../config');
+const { BOT_TOKEN, ADMIN_ID } = require('./config');
 const { approveMessage } = require('../utils/forward');
 
 const bot = new Telegraf(BOT_TOKEN);
