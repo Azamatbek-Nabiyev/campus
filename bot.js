@@ -2,7 +2,7 @@ const { Telegraf, Markup } = require('telegraf');
 const { BOT_TOKEN, ADMIN_ID } = require('./config');
 const { approveMessage } = require('./utils/forward');
 
-const OWNER_USERNAME = '@Azamat_Nabiyev'; // o‘rniga @sizning_username’ingizsiz yozing
+const OWNER_USERNAME = '@campusadmin';
 
 const bot = new Telegraf(BOT_TOKEN);
 
@@ -22,7 +22,7 @@ bot.hears('📨 Send Message', (ctx) => {
 });
 
 bot.hears('📞 Contact', (ctx) => {
-  ctx.reply(`You can contact the admin here: @${OWNER_USERNAME}`);
+  ctx.reply(`You can contact the admin here: ${OWNER_USERNAME}`);
 });
 
 // Xabar kelganda – admin forward qilish
