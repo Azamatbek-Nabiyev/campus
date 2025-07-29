@@ -1,5 +1,5 @@
 require('dotenv').config();
-const bot = require('./src/bot');
+const bot = require('./bot');
 
 bot.launch();
 console.log('🚀 Campus bot launched');
