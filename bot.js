@@ -8,6 +8,7 @@ const bot = new Telegraf(BOT_TOKEN);
 
 // Start komandasi
 bot.start((ctx) => {
+  console.log('ADMIN_ID:', ADMIN_ID);
   ctx.reply(
     'Welcome! Please choose an option below',
     Markup.keyboard([['📨 Send Message', '📞 Contact']])
