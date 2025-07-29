@@ -13,7 +13,7 @@ function approveMessage(ctx, message) {
       caption: message.caption || '',
     });
   } else {
-    return ctx.reply('Bu turdagi xabar qo‘llab-quvvatlanmaydi.');
+    return ctx.reply('This file is not acceptable');
   }
 }
 

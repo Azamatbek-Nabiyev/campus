@@ -9,24 +9,20 @@ const bot = new Telegraf(BOT_TOKEN);
 // Start komandasi
 bot.start((ctx) => {
   ctx.reply(
-    'Xush kelibsiz! Quyidagi tugmalardan birini tanlang:',
-    Markup.inlineKeyboard([
-      [Markup.button.callback('📨 Send Message', 'SEND_MESSAGE')],
-      [Markup.button.callback('📞 Contact', 'CONTACT')],
-    ])
+    'Welcome! Please choose an option below',
+    Markup.keyboard([['📨 Send Message', '📞 Contact']])
+      .resize()
+      .oneTime(false)
   );
 });
 
-// "Send Message" bosilganda
-bot.action('SEND_MESSAGE', async (ctx) => {
-  await ctx.answerCbQuery();
-  await ctx.reply('Xabaringizni yozing. Admin ko‘rib chiqadi.');
+// Reply tugmalar: har doim chat ostida turadi
+bot.hears('📨 Send Message', (ctx) => {
+  ctx.reply('Please type your message. The admin will review it shortly.');
 });
 
-// "Contact" bosilganda
-bot.action('CONTACT', async (ctx) => {
-  await ctx.answerCbQuery();
-  await ctx.reply(`Admin bilan bog‘lanish: @${OWNER_USERNAME}`);
+bot.hears('📞 Contact', (ctx) => {
+  ctx.reply(`You can contact the admin here: @${OWNER_USERNAME}`);
 });
 
 // Xabar kelganda – admin forward qilish
@@ -37,7 +33,7 @@ bot.on('message', async (ctx) => {
   if (String(ctx.from.id) === ADMIN_ID && msg.reply_to_message) {
     if (msg.text === '/approve') {
       approveMessage(ctx, msg.reply_to_message);
-      return ctx.reply('✅ Xabar kanalga yuborildi.');
+      return ctx.reply('✅ Message has been approved and sent to the channel.');
     }
     return;
   }
@@ -54,7 +50,7 @@ bot.on('message', async (ctx) => {
       'Yuqoridagi xabarni kanalga yuborish uchun unga reply qilib `/approve` deb yozing.'
     );
     await ctx.reply(
-      'Xabaringiz adminga yuborildi. Tasdiqlangach kanalga chiqadi.'
+      'Your message has been sent to the admin. It will be posted once approved.'
     );
   }
 });
