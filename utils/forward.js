@@ -19,10 +19,7 @@ function approveMessage(ctx, message) {
       caption,
     });
   } else if (message.video_note) {
-    const caption = (message.caption || '') + suffix;
-    return ctx.telegram.sendVideo(CHANNEL_ID, message.video.file_id, {
-      caption,
-    });
+    return ctx.telegram.sendVideoNote(CHANNEL_ID, message.video_note.file_id);
   } else {
     return ctx.reply('This file type is not supported for posting.');
   }
